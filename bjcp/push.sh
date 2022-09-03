@@ -1,5 +1,5 @@
 date='date +%m-%d'
 
 git add *
-sleep 2
-git commit -m '$date'
+usleep 1000
+git commit -m "$date"
