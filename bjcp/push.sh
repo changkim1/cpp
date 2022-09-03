@@ -1,5 +1,5 @@
 DATE='date "+%m-%d"'
 
-echo $DATE
+echo ${DATE}
 git add *
 git commit -m "$DATE"
