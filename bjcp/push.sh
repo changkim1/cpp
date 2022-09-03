@@ -1,4 +1,4 @@
-date='date'
+DATE='date "+%m-%d"'
 
 git add *
-git commit -m "$date"
+git commit -m "$DATE"
