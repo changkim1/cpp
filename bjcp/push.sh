@@ -1,4 +1,4 @@
-DATE=$(date "+%y%m%d%h%s")
+DATE=$(date "+%y%m%d%h")
 
 echo ${DATE}
 git add *
