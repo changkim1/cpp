@@ -1,0 +1,17 @@
+PP		= g++
+PFLAG	= -Wall -Werror -Wextra
+
+SRC		= $(shell ls -t *cpp | head -1)
+
+DATE	= $(shell date "+%y%m%d")
+
+all	:
+		$(PP) $(PFLAG) $(SRC)
+		./a.out
+
+git :
+		git add *
+		git commit -m $(DATE)
+		git push
+
+.PHONY: all git
