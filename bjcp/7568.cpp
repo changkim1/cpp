@@ -5,7 +5,7 @@ using namespace std;
 
 pair<int, int> man[MAX];
 int ranking[MAX];
-int n;
+int n
 
 int main(void)
 {
