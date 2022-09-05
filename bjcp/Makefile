@@ -7,12 +7,8 @@ DATE	= $(shell date "+%y%m%d")
 
 all	:
 		$(PP) $(PFLAG) $(SRC)
-		@echo "\033[32mcheck..."
-		@bash check.sh
-
-check :
-		$(PP) $(PFLAG) check.cpp -o check
-		@echo "\033[32mMAKE CHECK SUCCESS"
+		@echo "\033[32mINPUT : "
+		@./a.out
 
 git :
 		git add *
