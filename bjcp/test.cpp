@@ -7,14 +7,8 @@ int arry[1000][1000];
 
 int main()
 {
-	string tmp;
-	map<string, int> test;
-	string one = "one";
-	string two = "two";
-	string three = "three";
-	test.insert({one, 1});
-	test.insert({two, 2});
-	test.insert({three, 3});
-	cin >> tmp;
-	cout << test.at(one);
+	string tmp = "hello ";
+	string tmp1 = tmp.substr(0, 3);
+	cout << tmp1;
+	
 }
