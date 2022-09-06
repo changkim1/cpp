@@ -16,5 +16,5 @@ int main()
 	test.insert({two, 2});
 	test.insert({three, 3});
 	cin >> tmp;
-	cout << test[tmp];
+	cout << test.at(one);
 }
