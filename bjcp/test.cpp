@@ -1,20 +1,13 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <stack>
 using namespace std;
 
-int arry[1000][1000];
-
+stack<int> stk;
 int main()
 {
-	string tmp;
-	map<string, int> test;
-	string one = "one";
-	string two = "two";
-	string three = "three";
-	test.insert({one, 1});
-	test.insert({two, 2});
-	test.insert({three, 3});
-	cin >> tmp;
-	cout << test[tmp];
+	stk.push(1);
+	cout << stk.top();
+	stk.pop();
 }
