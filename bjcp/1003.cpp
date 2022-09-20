@@ -2,30 +2,33 @@
 #define endl '\n'
 using namespace std;
 
-int t, n, max;
+int t, n, mx;
+int ans[50][2];
 
-int	solve(int a)
+void solve(int a)
 {
-	if (a == 1)
+	for (int i = 2; i <= a; i++)
 	{
-		ans[1]++;
-		return (1);
+		if (ans[i][0] != 0 || ans[i][1] != 0)
+			continue ;
+		ans[i][0] = ans[i - 1][0] + ans[i - 2][0];
+		ans[i][1] = ans[i - 1][1] + ans[i - 2][1];
 	}
-	else if (a == 0)
-	{
-		ans[0]++;
-		return (0);
-	}
-	else
-		return (solve(a-1) + solve(a-2));
+	cout << ans[a][0] << ' ' << ans[a][1] << endl;
 }
 
 int main(void)
 {
+	int num;
 	cin >> t;
-	pair<int, int> ans;
+	ans[0][0] = 1;
+	ans[0][1] = 0;
+	ans[1][0] = 0;
+	ans[1][1] = 1;
 	for (int i = 0; i < t; i++)
 	{
-		
+		cin >> num;
+		solve(num);
 	}
+
 }
