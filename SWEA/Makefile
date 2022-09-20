@@ -10,7 +10,7 @@ all	:
 		@echo "\033[32mINPUT : "
 		@./a.out
 
-file :
+file : 
 		@echo $(SRC)
 
 git :
@@ -18,4 +18,4 @@ git :
 		git commit -m $(DATE)
 		git push
 
-.PHONY: all git file
+.PHONY: all git check

@@ -1,59 +1,79 @@
 #include <iostream>
-#include <algorithm>
+#include <deque>
 #define MAX 1001
 using namespace std;
 
+// MAX 왼쪽 , (MAX 사이), MAX 오른쪽
+// 왼쪽 : max_hi 갱신시키면서 높이를 쌓아감
+// 사이 : max_hi * 가로길이
+// 오른쪽 : 뒤에서부터 max_hi 갱신시키면서 높이 쌓아감.
+
+deque<int> dq;
+int map[MAX]; // idx == x, value == y
 int n;
-pair<int, int> max_hi;
-pair<int, int> wei;
-int pil[MAX];
-int roof[MAX];
+int max_idx[2];
+int max_hi;
+int max_wi;
+int ans;
+
+void	solve_left()
+{
+	int tmp_max;
+	tmp_max = 0;
+	for (int i = 0; i < max_idx[0]; i++)
+	{
+		if (tmp_max < map[i])
+			tmp_max = map[i];
+		ans += tmp_max;
+	}
+}
+
+void	solve_mid()
+{
+	for (int i = max_idx[0]; i <= max_idx[1]; i++)
+		ans += max_hi;
+}
+
+void	solve_right()
+{
+	int tmp_max;
+	tmp_max = 0;
+	for (int i = max_wi; i > max_idx[1]; i--)
+	{
+		if (tmp_max < map[i])
+			tmp_max = map[i];
+		ans += tmp_max;
+	}
+}
 
 int main(void)
 {
-	int cur_max_hi;
-	pair<int, int> tmp;
-	int ans;
-
-	wei.first = MAX;
-	wei.second = 0;
 	cin >> n;
+	int tmp;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> tmp.first >> tmp.second;
-		if (max_hi.second < tmp.second)
+		cin >> tmp;
+		cin >> map[tmp];
+		if (map[tmp] > max_hi)
+			max_hi = map[tmp];
+		if (tmp > max_wi)
+			max_wi = tmp;
+	}
+	max_idx[1] = -1;
+	for (int i = 0; i <= max_wi; i++)
+	{
+		if (map[i] == max_hi)
 		{
-			max_hi.first = tmp.first;
-			max_hi.second = tmp.second;
+			if (max_idx[0] == 0)
+				max_idx[0] = i;
+			else
+				max_idx[1] = i;
 		}
-		if (tmp.first < wei.first)
-			wei.first = tmp.first;
-		else if (tmp.first > wei.second)
-			wei.second = tmp.first;
-		pil[tmp.first] = tmp.second;
 	}
-	if (n == 1)
-	{
-		cout << pil[wei.first] << endl;
-		return (0);
-	}
-	cur_max_hi = pil[wei.first];
-	for (int i = wei.first; i < max_hi.first; i++)
-	{
-		if (pil[i] > cur_max_hi)
-			cur_max_hi = pil[i];
-		roof[i] = cur_max_hi;
-	}
-	roof[max_hi.first] = max_hi.second;
-	cur_max_hi = pil[wei.second];
-	for (int i = wei.second; i > max_hi.first; i--)
-	{
-		if (pil[i] > cur_max_hi)
-			cur_max_hi = pil[i];
-		roof[i] = cur_max_hi;
-	}
-	ans = 0;
-	for (int i = wei.first; i <= wei.second; i++)
-		ans += roof[i];
-	cout << ans << endl;
+	if (max_idx[1] == -1)
+		max_idx[1] = max_idx[0];
+	solve_left();
+	solve_mid();
+	solve_right();
+	cout << ans << '\n';
 }
