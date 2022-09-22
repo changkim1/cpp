@@ -2,12 +2,17 @@
 #include <string>
 #include <map>
 #include <stack>
+#include <deque>
 using namespace std;
 
-stack<int> stk;
+deque<int> dq;
+
 int main()
 {
-	stk.push(1);
-	cout << stk.top();
-	stk.pop();
+	for (int i = 0; i < 10; i++)
+	{
+		while (i < 5)
+			i++;
+		printf("%d ", i);	
+	}
 }
