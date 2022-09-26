@@ -20,7 +20,7 @@ int map[MAX][MAX];
 int vis[MAX][MAX];
 int dep[MAX][MAX];
 
-bool is_valid(int x, int y)
+int is_valid(int x, int y)
 {
 	return (x >= 0 && y >= 0 && x < m && y < n);
 }
@@ -34,7 +34,7 @@ void bfs(void)
 		{
 			if (map[i][j] == 1 && !vis[i][j])
 			{
-				dq.push_back({i, j});
+				dq.push_back({j, i});
 				vis[i][j] = 1;
 			}
 		}
@@ -54,6 +54,7 @@ void bfs(void)
 					dq.push_back({nx, ny});
 					vis[ny][nx] = 1;
 					dep[ny][nx] = dep[now.y][now.x] + 1;
+					map[ny][nx] = 1;
 					if (dep[ny][nx] > day)
 						day = dep[ny][nx];
 				}
@@ -75,9 +76,12 @@ int main(void)
 	{
 		for (int j = 0; j < m; j++)
 		{
-			printf("%d ", map[i][j]);
+			if (map[i][j] == 0)
+			{
+				cout << "-1" << '\n';
+				return (0);
+			}
 		}
-		printf("\n");
 	}
 	cout << day << '\n';
 }
