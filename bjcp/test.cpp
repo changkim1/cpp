@@ -9,5 +9,10 @@ deque<int> dq;
 
 int main()
 {
-	printf("%d", 5 > 4);
+	string test;
+	cin >> test;
+	if (test.compare("ok") == 1)
+		cout << "OK\n";
+	else
+		cout << "NO\n";
 }
