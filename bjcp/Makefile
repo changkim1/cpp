@@ -1,5 +1,5 @@
 PP		= g++
-PFLAG	= -Wall -Werror -Wextra
+PFLAG	= 
 
 SRC		= $(shell ls -t *.cpp | head -1)
 
