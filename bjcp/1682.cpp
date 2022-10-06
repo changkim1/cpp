@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <deque>
-#include <vector>
+#include <map>
 #include <algorithm>
 
 using namespace std;
@@ -9,7 +9,7 @@ using namespace std;
 string ans;
 
 deque<pair<string, int>> dq;
-vector<string> v;
+map<string, int> v;
 
 string A(string num)
 {
@@ -77,7 +77,7 @@ void	bfs(string num)
 	pair<string, int> now, tmp;
 	int cnt = 0;
 	dq.push_back({num, 0});
-	v.push_back(num);
+	v.insert({num, 0});
 	while (!dq.empty())
 	{
 		now = dq.front();
@@ -91,12 +91,12 @@ void	bfs(string num)
 				cout << tmp.second << endl;
 				return ;
 			}
-			if (find(v.begin(), v.end(), tmp.first) != v.end())
+			if (v.find(tmp.first) != v.end())
 				continue ;
 			else
 			{
 				dq.push_back(tmp);
-				v.push_back(tmp.first);
+				v.insert({tmp.first, 0});
 			}
 		}
 	}
@@ -111,6 +111,11 @@ int main(void)
 		cin >> c;
 		ans += c;
 		num += (i + '1');
+	}
+	if (num == ans)
+	{
+		cout << "0" << endl;
+		return 0;
 	}
 	bfs(num);
 }

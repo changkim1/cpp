@@ -9,10 +9,7 @@ deque<int> dq;
 
 int main()
 {
-	string test;
-	cin >> test;
-	if (test.compare("ok") == 1)
-		cout << "OK\n";
-	else
-		cout << "NO\n";
+	char c='a';
+	char d = c + 1;
+	cout << d << endl;
 }
