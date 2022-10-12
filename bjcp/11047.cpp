@@ -22,12 +22,21 @@ int main(void)
 	int tmp, i, cnt;
 	cnt = 0;
 	tmp = k;
-	while (tmp != 0)
+	i = 0;
+	while (tmp > 0)
 	{
 		while (price[i] != 0 && price[i] > tmp)
 			i++;
-		tmp -= price[i];
-		cnt++;
+		while (tmp > price[i])
+		{
+			tmp = tmp - price[i];
+			cnt++;
+		}
+		if (tmp == price[i])
+		{
+			cnt++;
+			break ;
+		}
 	}
 	cout << cnt << endl;
 }
