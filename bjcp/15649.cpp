@@ -15,7 +15,7 @@ int	is_okay(int idx)
 {
 	if ()
 	{
-
+		
 	}
 	tmp.clear();
 }
