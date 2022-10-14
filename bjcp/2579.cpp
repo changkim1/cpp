@@ -8,7 +8,7 @@ int arr[301];
 
 int main(void)
 {
-	int n;
+	int n, _max;
 	cin >> n;
 	for (int i = 1; i <= n; i++)
 	{
@@ -18,10 +18,8 @@ int main(void)
 	dp[2] = arr[1] + arr[2];
 	for (int i = 3; i <= n; i++)
 	{
-		dp[i] = MAX((dp[i - 3] + arr[i-1]), dp[i-2]) + arr[i];
-		printf("a = %d b = %d MAX = %d arr[%d] = %d\n", dp[i-3] + arr[i-1], dp[i-2], MAX(dp[i-3] + arr[i-1], dp[i-2]), i, arr[i]);
-		printf("dp[%d] = %d\n", i, dp[i]);
+		_max = MAX((dp[i - 3] + arr[i - 1]), dp[i - 2]);
+		dp[i] = _max + arr[i];
 	}
-	cout << endl;
-	
+	cout << dp[n] << endl;
 }
