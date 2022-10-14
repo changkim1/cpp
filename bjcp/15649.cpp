@@ -6,18 +6,31 @@
 using namespace std;
 
 priority_queue<string> pq;
-map<string, int> _map;
-map<char, int> tmp;
+string tmp;
+map<int, int> map_;
+int board[9];
 
 int n, m;
 
-int	is_okay(int idx)
+int	is_okay(int line)
 {
-	if ()
+	for (int i = 0; i < m; i++)
 	{
-		
+		if (i == line)
+			continue ;
+		if (board[i] == board[line])
+
 	}
-	tmp.clear();
+}
+
+void	solve(int line)
+{
+	if (line == m)
+		return ;
+	for (int i = 1; i <= n; i++)
+	{
+		;
+	}
 }
 
 int main(void)
