@@ -31,7 +31,7 @@ int valid_(int x, int y)
 void	bfs(void)
 {
 	node now;
-	int nx, ny;
+	int nx, ny, size;
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -42,7 +42,7 @@ void	bfs(void)
 				vis[i][j] = 1;
 				cnt++;
 			}
-			int size = 0;
+			size = 0;
 			while (!dq.empty())
 			{
 				now = dq.front();
@@ -59,7 +59,8 @@ void	bfs(void)
 					}
 				}
 			}
-			pq.push(size);
+			if (size != 0)
+				pq.push(size);
 		}
 	}
 }
