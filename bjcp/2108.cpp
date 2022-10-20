@@ -37,7 +37,7 @@ int main(void)
 	printf("\n");
 	a = round(hap / n);
 	b = num[n / 2];
-	printf("%d %d\n", num[n/`2], hap);
+	printf("%d %d\n", num[n/2], hap);
 	for (int i = 0; i < max_ + 4000; i++)
 	{
 		if (cnt[i] == 0)
