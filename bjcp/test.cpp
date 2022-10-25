@@ -9,7 +9,13 @@ deque<int> dq;
 
 int main()
 {
-	char c='a';
-	char d = c + 1;
-	cout << d << endl;
+	int i;
+	string tmp;
+	i = 100;
+	tmp = to_string(i);
+	int idx;
+	idx = tmp[0] - '0';
+	int num[2];
+	num[idx] = 100;
+	printf("%d\n", num[1]);
 }
