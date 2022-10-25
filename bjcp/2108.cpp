@@ -1,63 +1,55 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-
+#define MAX(a, b) a > b ? a : b
+#define MIN(a, b) a < b ? a : b
 using namespace std;
 
-int n, hap, max_ = -4001, min_ = 4001, max_cnt;
-int cnt[8005];
-int num[500000];
 
-bool	compare(int a, int b)
+bool compare(int a, int b)
 {
 	return (a < b);
 }
 
 int main(void)
 {
-	double a;
-	int b, c, d, inp, check = 0;
+	int n;
+	int bin[8001], bin_cnt = 0;
+	int max_ = -4001, min_ = 4001;
+	double hap = 0;
+	int jung[500001];
+	int inp, check = 0;
+	double pyeong;
+	int jungang, choibin, beom;
 	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		cin >> inp;
-		cnt[inp+4000]++;
-		num[i] = inp;
+		bin[inp + 4000]++;
+		jung[i] = inp;
+		bin_cnt = MAX(bin[inp + 4000], bin_cnt);
+		max_ = MAX(inp, max_);
+		min_ = MIN(inp, min_);
 		hap += inp;
-		if (inp > max_)
-			max_ = inp;
-		if (inp < min_)
-			min_ = inp;
 	}
-	sort(num, num+n, compare);
-	for (int i = 0; i < n; i++)
+	sort(jung, jung + n, compare);
+	pyeong = hap / n;
+	jungang = jung[n / 2];
+	beom = max_ - min_;
+	for (int i = 0; i <= 8000; i++)
 	{
-		printf("%d ", num[i]);
-	}
-	printf("\n");
-	a = round(hap / n);
-	b = num[n / 2];
-	printf("%d %d\n", num[n/2], hap);
-	for (int i = 0; i < max_ + 4000; i++)
-	{
-		if (cnt[i] == 0)
-			continue ;
-		if (max_cnt < cnt[i])
-			max_cnt = cnt[i];
-	}
-	for (int i = 0; i < max_ + 4000; i++)
-	{
-		if (cnt[i] == max_cnt)
+		if (check == 1 && bin_cnt == bin[i])
 		{
-			if (check == 1)
-			{
-				c = i - 4000;
-				break ;
-			}
-			else
-				check = 1;
+			choibin = i - 4000;
+			break ;
+		}
+		if (check == 0 && bin_cnt == bin[i])
+		{
+			choibin = i - 4000;
+			check = 1;
 		}
 	}
-	d = max_ - min_;
-	printf("a %d\nb %d\nc %d\nd %d\n", a, b, c, d);
+	pyeong = round(pyeong);
+	int tmp = (int)pyeong;
+	printf("%d\n%d\n%d\n%d\n", tmp, jungang, choibin, beom);
 }
