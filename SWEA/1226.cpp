@@ -22,26 +22,32 @@ int valid_(int x, int y)
 	return (x >= 0 && y >= 0 && x < 16 & y < 16);
 }
 
-void	bfs(node start, node goal)
+void	bfs(node start, node goal, int t)
 {
 	node now;
-	int nx, ny;
+	int nx, ny, check = 0;
 	q.push(start);
-	vis[start.y][start.x];
+	vis[start.y][start.x] = 1;
 	while (!q.empty())
 	{
 		now = q.front();
 		q.pop();
+		if (now.x == goal.x && now.y == goal.y)
+			check = 1;
 		for (int i = 0; i < 4; i++)
 		{
 			nx = now.x + dx[i];
 			ny = now.y + dy[i];
 			if (valid_(nx, ny) && map[ny][nx] == 0 && !vis[ny][nx])
 			{
-				
+				q.push({nx, ny});
+				vis[ny][nx] = 1;
 			}
 		}
 	}
+	printf("#%d ", t);
+	printf("%d\n", check);
+	
 }
 
 int main(void)
