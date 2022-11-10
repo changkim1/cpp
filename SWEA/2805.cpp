@@ -5,7 +5,7 @@ using namespace std;
 
 int map[50][50];
 
-void	solve(int n)
+void	solve(int n, int a)
 {
 	int ans = 0;
 	int st = n / 2;
@@ -14,18 +14,13 @@ void	solve(int n)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			int tmp = 0;
 			pass_idx = abs(st - i);
-			while (tmp < pass_idx)
-			{
-				tmp++;
-				j++;
-			}
+			if (j < pass_idx || j >= n - pass_idx)
+				continue ;
 			ans += map[i][j];
-			printf("(%d, %d) = %d += %d\n", i, j, map[i][j], ans);
 		}	
 	}
-	cout << ans << '\n';
+	printf("#%d %d\n", a + 1, ans);
 }
 
 int main(void)
@@ -44,6 +39,6 @@ int main(void)
 				map[i][j] = inp[j] - '0';
 			}
 		}
-		solve(n);
+		solve(n, a);
 	}
 }
