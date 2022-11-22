@@ -1,58 +1,29 @@
 #include <iostream>
 #include <algorithm>
+#include <map>
 #define MAX 500001
+
 using namespace std;
 
-int 	n, m;
+int n, m;
+int num[20000005];
 
-int	under_bound(int num, int *set)
-{
-	int i = 0;
-	int mid, end;
-	end = n - 1;
-	while (i < end)
-	{
-		mid = (i + end) / 2;
-		if (set[mid] >= num)
-			end = mid;
-		else
-			i = mid;
-	}
-}
-
-int	upper_bound(int num, int *set)
-{
-	int i = 0;
-	while (i < n && set[i] <= num)
-		i++;
-	return (i);
-}
+map<int, int> map_;
 
 int main(void)
 {
-	int tmp, under, upper;
+	cin.tie(NULL);
+	int inp;
 	cin >> n;
-	int *set = new int[n];
 	for (int i = 0; i < n; i++)
-		cin >> set[i];
-	sort(set, set + n);
+	{
+		cin >> inp;
+		num[inp + 10000000]++;
+	}
 	cin >> m;
-	int *result = new int[m];
-	for (int i = 0; i < m; i++)
+	for (int j = 0; j < m; j++)
 	{
-		cin >> tmp;
-		if (n == 1)
-			result[i] = set[i];
-		else
-		{
-			under = under_bound(tmp, set);
-			upper = upper_bound(tmp, set);
-			result[i] = upper - under;
-		}
+		cin >> inp;
+		cout << num[inp + 10000000] << ' ';
 	}
-	for (int i = 0; i < m; i++)
-	{
-		cout << result[i] << ' ';
-	}
-	printf("\n");
 }

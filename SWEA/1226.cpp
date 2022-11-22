@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ int dy[4] = {1, 0, -1, 0};
 
 int valid_(int x, int y)
 {
-	return (x >= 0 && y >= 0 && x < 16 & y < 16);
+	return (x >= 0 && y >= 0 && x < 16 && y < 16);
 }
 
 void	bfs(node start, node goal, int t)
@@ -38,16 +39,15 @@ void	bfs(node start, node goal, int t)
 		{
 			nx = now.x + dx[i];
 			ny = now.y + dy[i];
-			if (valid_(nx, ny) && map[ny][nx] == 0 && !vis[ny][nx])
+			if (valid_(nx, ny) && (map[ny][nx] == 0 || map[ny][nx] == 3) && !vis[ny][nx])
 			{
 				q.push({nx, ny});
 				vis[ny][nx] = 1;
 			}
 		}
 	}
-	printf("#%d ", t);
+	printf("#%d ", t + 1);
 	printf("%d\n", check);
-	
 }
 
 int main(void)
@@ -57,6 +57,8 @@ int main(void)
 	string inp;
 	for (int t = 0; t < 10; t++)
 	{
+		memset(vis, 0, sizeof(vis));
+		memset(map, 0, sizeof(map));
 		cin >> inp;
 		for (int i = 0; i < n; i++)
 		{
@@ -69,13 +71,13 @@ int main(void)
 					start.x = j;
 					start.y = i;
 				}
-				else if (map[i][j] = 3)
+				else if (map[i][j] == 3)
 				{
 					goal.x = j;
 					goal.y = i;
 				}
 			}
 		}
+		bfs(start, goal, t);
 	}
-
 }
