@@ -25,6 +25,25 @@ bool is_valid(int x, int y)
 	return (x >= 0 && y >= 0 && x < m && y < n);
 }
 
+void	dfs(void)
+{
+	node now;
+	now = s.top();
+	s.pop();
+	int nx, ny;
+	for (int i = 0; i < 4; i++)
+	{
+		nx = now.x + dx[i];
+		ny = now.y + dy[i];
+		if (is_valid(nx, ny) && map[ny][nx] & !vis[ny][nx])
+		{
+			s.push({nx, ny});
+			vis[ny][nx] = 1;
+			dfs();
+		}
+	}
+}
+
 int main(void)
 {
 	int a, b;
@@ -40,5 +59,19 @@ int main(void)
 			cin >> a >> b;
 			map[a][b] = 1;
 		}
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < m; j++)
+			{
+				if (map[i][j] && !vis[i][j])
+				{
+					s.push({j, i});
+					vis[i][j] = 1;
+					dfs();
+				}
+				cnt++;
+			}
+		}
+		cout << cnt << '\n';
 	}
 }
