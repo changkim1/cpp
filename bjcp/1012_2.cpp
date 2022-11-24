@@ -48,7 +48,7 @@ int main(void)
 {
 	int a, b;
 	cin >> t;
-	for (int a = 0; a < t; a++)
+	for (int z = 0; z < t; z++)
 	{
 		memset(map, 0, sizeof(map));
 		memset(vis, 0, sizeof(vis));
@@ -57,7 +57,7 @@ int main(void)
 		for (int i = 0; i < k; i++)
 		{
 			cin >> a >> b;
-			map[a][b] = 1;
+			map[b][a] = 1;
 		}
 		for (int i = 0; i < n; i++)
 		{
@@ -68,8 +68,8 @@ int main(void)
 					s.push({j, i});
 					vis[i][j] = 1;
 					dfs();
+					cnt++;
 				}
-				cnt++;
 			}
 		}
 		cout << cnt << '\n';
