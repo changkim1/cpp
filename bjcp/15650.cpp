@@ -1,13 +1,13 @@
 #include <iostream>
-#define MAX 9
 
 using namespace std;
 
 int n, m;
-int arr[MAX] = {0, };
-int vis[MAX] = {0, };
+int vis[9] = {0, };
+int arr[9] = {0, };
 
-void	dfs(int cnt)
+
+void	dfs(int cnt, int tmp)
 {
 	if (cnt == m)
 	{
@@ -18,12 +18,13 @@ void	dfs(int cnt)
 	}
 	for (int i = 1; i <= n; i++)
 	{
-		if (vis[i] == 1)
-			continue ;
-		vis[i] = 1;
-		arr[cnt] = i;
-		dfs(cnt + 1);
-		vis[i] = 0;
+		if (!vis[i] && tmp < i)
+		{
+			vis[i] = 1;
+			arr[cnt] = i;
+			dfs(cnt + 1, i);
+			vis[i] = 0;
+		}
 	}
 }
 
@@ -31,5 +32,5 @@ void	dfs(int cnt)
 int main(void)
 {
 	cin >> n >> m;
-	dfs(0);
+	dfs(0, 0);
 }
