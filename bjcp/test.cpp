@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 int main(void)
 {
 	bool check[10] = { false };
